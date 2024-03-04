@@ -42,4 +42,3 @@ describe('Tests for Loger class', () => {
   });
 
 });
-
