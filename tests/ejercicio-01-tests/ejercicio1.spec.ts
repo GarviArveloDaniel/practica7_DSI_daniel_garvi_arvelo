@@ -21,19 +21,24 @@ describe('Tests for Loger class', () => {
   it('Correctly filters by user', () => {
     expect(loger.getActionsOfUser('pepe')).to.be.deep.equal([['pepe', ActionTypes.InicioSesion, fecha3],
                                                              ['pepe', ActionTypes.Exportado, fecha5]]);
+    expect(loger.getActionsOfUser('juan')).to.be.deep.equal([['juan', ActionTypes.CambioRed, fecha4]]);
   });
 
   it('Correctly filters by type', () => {
     expect(loger.getActionsByType(ActionTypes.InicioSesion)).to.be.deep.equal([['pepe', ActionTypes.InicioSesion, fecha3]]);
+    expect(loger.getActionsByType(ActionTypes.Exportado)).to.be.deep.equal([['pepe', ActionTypes.Exportado, fecha5]]);
+    expect(loger.getActionsByType(ActionTypes.CambioRed)).to.be.deep.equal([['juan', ActionTypes.CambioRed, fecha4]]);
   });
 
   it('Correctly filters between two dates', () => {
     expect(loger.getActionsBetweenDates(fecha1, fecha2)).to.be.deep.equal([['pepe', ActionTypes.InicioSesion, fecha3],
                                                                            ['juan', ActionTypes.CambioRed, fecha4],
-                                                                           ['pepe', ActionTypes.Exportado, fecha5]])
+                                                                           ['pepe', ActionTypes.Exportado, fecha5]]);
     expect(loger.getActionsBetweenDates(fecha2, fecha1)).to.be.deep.equal([['pepe', ActionTypes.InicioSesion, fecha3],
                                                                            ['juan', ActionTypes.CambioRed, fecha4],
-                                                                           ['pepe', ActionTypes.Exportado, fecha5]])
+                                                                           ['pepe', ActionTypes.Exportado, fecha5]]);
+    expect(loger.getActionsBetweenDates(fecha3, fecha3)).to.be.deep.equal([['pepe', ActionTypes.InicioSesion, fecha3]]);
+    expect(loger.getActionsBetweenDates(fecha4, fecha4)).to.be.deep.equal([['juan', ActionTypes.CambioRed, fecha4]]);
   });
 
   it('Correctly iterates', () => {
