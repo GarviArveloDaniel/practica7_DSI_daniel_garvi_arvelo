@@ -31,6 +31,9 @@ describe('Tests for Loger class', () => {
     expect(loger.getActionsBetweenDates(fecha1, fecha2)).to.be.deep.equal([['pepe', ActionTypes.InicioSesion, fecha3],
                                                                            ['juan', ActionTypes.CambioRed, fecha4],
                                                                            ['pepe', ActionTypes.Exportado, fecha5]])
+    expect(loger.getActionsBetweenDates(fecha2, fecha1)).to.be.deep.equal([['pepe', ActionTypes.InicioSesion, fecha3],
+                                                                           ['juan', ActionTypes.CambioRed, fecha4],
+                                                                           ['pepe', ActionTypes.Exportado, fecha5]])
   });
 
   it('Correctly iterates', () => {
